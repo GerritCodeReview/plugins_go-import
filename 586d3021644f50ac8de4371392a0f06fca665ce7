@@ -48,6 +48,46 @@
     },
     {
       "key": {
+        "uuid": "4ac74853_e8c6ae7d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2017-04-03T17:36:47Z",
+      "side": 1,
+      "message": "I\u0027d definitely add some information here about the basic functionality included on this change, the limitations if any and the way it can be verified.",
+      "revId": "586d3021644f50ac8de4371392a0f06fca665ce7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "41ca5fe4_67df9948",
+        "filename": "src/main/java/com/ericsson/gerrit/plugins/goimport/GoImportFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2017-04-03T17:36:47Z",
+      "side": 1,
+      "message": "Optional: remove this, as visibility is implicitly package private.",
+      "range": {
+        "startLine": 68,
+        "startChar": 2,
+        "endLine": 68,
+        "endChar": 16
+      },
+      "revId": "586d3021644f50ac8de4371392a0f06fca665ce7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5797a27_7dd0f1ce",
         "filename": "src/main/java/com/ericsson/gerrit/plugins/goimport/GoImportFilter.java",
         "patchSetId": 1
