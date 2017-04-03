@@ -1,12 +1,12 @@
 include_defs('//bucklets/maven_jar.bucklet')
 
-VER = '2.12.5'
+VER = '2.13.6'
 REPO = MAVEN_CENTRAL
 
 maven_jar(
   name = 'plugin-api',
   id = 'com.google.gerrit:gerrit-plugin-api:' + VER,
-  sha1 = '456b8ed836cdcba672f94f397f09a67bcfbe54a7',
+  sha1 = '1a5d650c72ebc36f4ad522d5481d5ed690bec8bf',
   attach_source = False,
   repository = REPO,
   license = 'Apache2.0',
@@ -15,7 +15,7 @@ maven_jar(
 maven_jar(
    name = 'acceptance-framework',
    id = 'com.google.gerrit:gerrit-acceptance-framework:' + VER,
-   sha1 = 'b5de4458e29975bcd5f318411dddbef67063ec00',
+   sha1 = '53a5ffbc3ce6842b7145fd11abcc1dc8503b124f',
    license = 'Apache2.0',
    attach_source = False,
    repository = REPO,
