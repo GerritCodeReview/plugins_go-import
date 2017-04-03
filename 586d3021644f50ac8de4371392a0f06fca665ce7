@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6a4714ea_b00ed824",
+        "filename": ".gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-04-03T18:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be5f7a97_8f140b82",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 38
+      },
+      "revId": "586d3021644f50ac8de4371392a0f06fca665ce7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "805f8e38_047f8b4a",
         "filename": ".gitignore",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2017-04-03T17:21:43Z",
       "side": 1,
       "message": "remove this",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 37
+      },
+      "revId": "586d3021644f50ac8de4371392a0f06fca665ce7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "11b6b351_02af4e72",
+        "filename": ".gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-04-03T18:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "805f8e38_047f8b4a",
       "range": {
         "startLine": 9,
         "startChar": 0,
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "f967c5c5_cc597c5a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-04-03T18:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ac74853_e8c6ae7d",
+      "revId": "586d3021644f50ac8de4371392a0f06fca665ce7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "41ca5fe4_67df9948",
         "filename": "src/main/java/com/ericsson/gerrit/plugins/goimport/GoImportFilter.java",
         "patchSetId": 1
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "91f80de3_e8af5010",
+        "filename": "src/main/java/com/ericsson/gerrit/plugins/goimport/GoImportFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-04-03T18:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41ca5fe4_67df9948",
+      "range": {
+        "startLine": 68,
+        "startChar": 2,
+        "endLine": 68,
+        "endChar": 16
+      },
+      "revId": "586d3021644f50ac8de4371392a0f06fca665ce7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5797a27_7dd0f1ce",
         "filename": "src/main/java/com/ericsson/gerrit/plugins/goimport/GoImportFilter.java",
         "patchSetId": 1
@@ -99,6 +189,30 @@
       "writtenOn": "2017-04-03T17:21:43Z",
       "side": 1,
       "message": "one argument per line",
+      "range": {
+        "startLine": 72,
+        "startChar": 44,
+        "endLine": 72,
+        "endChar": 74
+      },
+      "revId": "586d3021644f50ac8de4371392a0f06fca665ce7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2670d0b7_73c570d6",
+        "filename": "src/main/java/com/ericsson/gerrit/plugins/goimport/GoImportFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-04-03T18:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5797a27_7dd0f1ce",
       "range": {
         "startLine": 72,
         "startChar": 44,
