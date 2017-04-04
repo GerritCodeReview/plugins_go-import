@@ -46,6 +46,30 @@
       "revId": "f33f0538e98292ec9c7054084f5a71a011c6f27b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6fbc7ea2_24d7ddf7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1029057
+      },
+      "writtenOn": "2017-04-04T13:18:13Z",
+      "side": 1,
+      "message": "My bad. Blindly copy-paste issue.",
+      "parentUuid": "274934e3_c84f5884",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "f33f0538e98292ec9c7054084f5a71a011c6f27b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
