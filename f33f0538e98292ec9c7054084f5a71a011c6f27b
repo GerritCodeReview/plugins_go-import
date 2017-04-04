@@ -22,6 +22,30 @@
       "revId": "f33f0538e98292ec9c7054084f5a71a011c6f27b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0f99861_4ec8a748",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2017-04-04T10:52:04Z",
+      "side": 1,
+      "message": "We are still running 2.12.5 :)\n\nI do not know why Hongkai did not use 2.13.7.",
+      "parentUuid": "274934e3_c84f5884",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "f33f0538e98292ec9c7054084f5a71a011c6f27b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
