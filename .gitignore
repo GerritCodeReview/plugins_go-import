@@ -6,3 +6,5 @@
 /.classpath
 /.project
 /.settings
+/.primary_build_tool
+/bazel-*
