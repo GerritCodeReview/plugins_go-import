@@ -120,11 +120,23 @@ public class GoImportFilterTest {
   public void testDoFilterWithExistingProject() throws Exception {
     when(mockRequest.getServletPath()).thenReturn("/projectName");
     when(mockRequest.getParameter("go-get")).thenReturn("1");
-    when(mockProjectCache.get(any(Project.NameKey.class))).thenReturn(mockProjectState);
+    when(mockProjectCache.get(new Project.NameKey("projectName"))).thenReturn(mockProjectState);
     unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
     verify(mockOutputStream, times(1)).write(PAGE_200.getBytes());
     verify(mockChain, times(0)).doFilter(mockRequest, mockResponse);
     verify(mockProjectCache, times(1)).get(any(Project.NameKey.class));
+    verify(mockResponse, times(1)).setStatus(200);
+  }
+
+  @Test
+  public void testDoFilterWithExistingProjectAndPackage() throws Exception {
+    when(mockRequest.getServletPath()).thenReturn("/projectName/my/package");
+    when(mockRequest.getParameter("go-get")).thenReturn("1");
+    when(mockProjectCache.get(new Project.NameKey("projectName"))).thenReturn(mockProjectState);
+    unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
+    verify(mockOutputStream, times(1)).write(PAGE_200.getBytes());
+    verify(mockChain, times(0)).doFilter(mockRequest, mockResponse);
+    verify(mockProjectCache, times(3)).get(any(Project.NameKey.class));
     verify(mockResponse, times(1)).setStatus(200);
   }
 
