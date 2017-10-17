@@ -1,6 +1,7 @@
 This plugin provides support of
 [remote import paths](https://golang.org/cmd/go/#hdr-Remote_import_paths) and
-[go-get command](https://golang.org/cmd/go/).
+[go-get command](https://golang.org/cmd/go/), which means that you can perform
+`go get` (and thus `dep`) requests against a Gerrit project.
 
 ### Usage
 
@@ -16,10 +17,33 @@ go get example.org/foo
 import "example.org/foo"
 ```
 
-### Limitation
-Folder of the repository is not supported in the context of Gerrit up to
-ambiguity of repository name. E.g., _example.org/foo/bar_ has two potential meanings:
+### Packages
+Go packages may be imported by specifying the package's _folder_ after the repository name.
+For example, "import github.com/bob/my-project/package1" will download the repository from
+`github.com/bob/my-project` and then include the package `package1`.
 
-* Folder _bar_ in repository _foo_, or
-* repository _foo/bar_.
+For Gerrit, this is still possible, but it's a little bit more ambiguous.
+On GitHub, all projects have a depth of two: (1) group and (2) repository.
+On Gerrit, any project may have an arbitrary depth.
+Thus, the following project names are valid in Gerrit:
+
+1. `bob`
+1. `bob/my-project`
+1. `bob/my-project/some-other-project`
+1. `tom`
+1. `tom/my-project`
+
+When a user requests a package via `go get`, this plugin will attempt to match the _most specific_
+project and return that.
+
+Using our previous examples of existing projects, this plugin will return the following projects
+for the given requests:
+
+| Request                            | Project          |
+| ---------------------------------- | ---------------- |
+| `/bob`                             | `bob`            |
+| `/bob/package1`                    | `bob`            |
+| `/bob/my-project`                  | `bob/my-project` |
+| `/bob/my-project/package1`         | `bob/my-project` |
+| `/bob/my-project/package1/folder2` | `bob/my-project` |
 

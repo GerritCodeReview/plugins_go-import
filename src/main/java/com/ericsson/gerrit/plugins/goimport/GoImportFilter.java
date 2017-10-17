@@ -93,15 +93,40 @@ public class GoImportFilter extends AllRequestFilter {
       String goGet = req.getParameter("go-get");
       if ("1".equals(goGet)) {
         String projectName = getProjectName(servletPath);
+        // Because Gerrit allows for arbitrary-depth project names
+        // (that is, both "a" and "a/b/c" are both legal), we are going
+        // to find the most specific such project that matches the path.
+        //
+        // For example, assume that we have the following projects:
+        //    a
+        //    a/b
+        // 1. If the requested path is "a", then project "a" would be chosen.
+        // 2. If the requested path is "a/b", then project "a/b" would be chosen.
+        // 3. If the requested path is "a/c", then project "a" would be chosen.
+        // 4. If the requested path is "a/b/c/d", then project "a/b" would be chosen.
+        // 5. If the requested path is "x/y/z", then this will fail with a 404 error.
+        String[] pathParts = projectName.split("/");
 
         byte[] tosend = PAGE_404.getBytes();
         rsp.setStatus(404);
-        if (projectExists(projectName)) {
-          tosend = PAGE_200.replace("${content}", getContent(projectName))
-              .getBytes();
-          rsp.setStatus(200);
-        }
+        // Start with the longest-length project name first.
+        for( int length = pathParts.length; length > 0; length-- ) {
+          // Create a new project name of the specified length; each time that we
+          // go through this loop, the project name will become shorter and shorter.
+          projectName = "";
+          for( int i = 0; i < length; i++ ) {
+            if( i > 0 ) {
+              projectName += "/";
+            }
+            projectName += pathParts[i];
+          }
 
+          if (projectExists(projectName)) {
+            tosend = PAGE_200.replace("${content}", getContent(projectName)).getBytes();
+            rsp.setStatus(200);
+            break;
+          }
+        }
         CacheHeaders.setNotCacheable(rsp);
         rsp.setContentType("text/html");
         rsp.setCharacterEncoding(HtmlDomUtil.ENC.name());
