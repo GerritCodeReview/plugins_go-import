@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05cc372f_10afdcc8",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2017-10-20T00:50:51Z",
+      "side": 1,
+      "message": "We should update src/main/resources/Documentation/about.md with that information. This readme is nice for developers but users see the information in the about.md when clicking on the plugin documentation link in Gerrit.",
+      "revId": "01ee1b5289a3ac3cff08f124697b3d780477a8be",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ca2de16_0d59f374",
+        "filename": "src/main/java/com/ericsson/gerrit/plugins/goimport/GoImportFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2017-10-20T00:50:51Z",
+      "side": 1,
+      "message": "nit: use spaces instead of tab",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 1
+      },
+      "revId": "01ee1b5289a3ac3cff08f124697b3d780477a8be",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
