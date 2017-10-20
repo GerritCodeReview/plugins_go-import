@@ -126,7 +126,7 @@ public class GoImportFilter extends AllRequestFilter {
             rsp.setStatus(200);
             break;
           }
-	}
+        }
         CacheHeaders.setNotCacheable(rsp);
         rsp.setContentType("text/html");
         rsp.setCharacterEncoding(HtmlDomUtil.ENC.name());
