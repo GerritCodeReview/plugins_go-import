@@ -22,6 +22,30 @@
       "revId": "7ec06016e3116bec245af30ffc44068c9c8c21c9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b708350_a840e66f",
+        "filename": "WORKSPACE",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1029953
+      },
+      "writtenOn": "2018-03-12T23:54:58Z",
+      "side": 1,
+      "message": "Ah right, yes, thanks, done.",
+      "parentUuid": "2afaaabe_6221a6b0",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 2
+      },
+      "revId": "7ec06016e3116bec245af30ffc44068c9c8c21c9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
