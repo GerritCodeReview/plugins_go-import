@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2afaaabe_6221a6b0",
+        "filename": "WORKSPACE",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-03-12T23:53:42Z",
+      "side": 1,
+      "message": "don\u0027t we need to use released api to use an rc release?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 2
+      },
+      "revId": "7ec06016e3116bec245af30ffc44068c9c8c21c9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
