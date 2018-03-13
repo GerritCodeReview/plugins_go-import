@@ -1,7 +1,7 @@
 Build
 =====
 
-This plugin is built with Bazel or Buck.
+This plugin is built with Bazel.
 
 Two build modes are supported: Standalone and in Gerrit tree. Standalone
 build mode is recommended, as this mode doesn't require local Gerrit
@@ -9,8 +9,6 @@ tree to exist.
 
 Build standalone
 ----------------
-
-### Bazel
 
 To build the plugin, issue the following command:
 
@@ -38,8 +36,6 @@ This project can be imported into the Eclipse IDE:
 
 Build in Gerrit tree
 --------------------
-
-### Bazel
 
 Clone or link this plugin to the plugins directory of Gerrit's source
 tree, and issue the command:
