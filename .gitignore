@@ -1,10 +1,6 @@
-/.buckversion
-/.buckd
-/buck-out
-/bucklets
-/target
 /.classpath
 /.project
 /.settings
 /.primary_build_tool
 /bazel-*
+/eclipse-out
