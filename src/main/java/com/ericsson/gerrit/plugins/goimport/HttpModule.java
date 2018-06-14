@@ -22,7 +22,6 @@ import com.google.inject.servlet.ServletModule;
 class HttpModule extends ServletModule {
   @Override
   protected void configureServlets() {
-    DynamicSet.bind(binder(), AllRequestFilter.class).to(GoImportFilter.class)
-        .in(Scopes.SINGLETON);
+    DynamicSet.bind(binder(), AllRequestFilter.class).to(GoImportFilter.class).in(Scopes.SINGLETON);
   }
 }
