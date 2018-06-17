@@ -18,58 +18,49 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
 
-import com.ericsson.gerrit.plugins.goimport.GoImportFilter;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.gerrit.server.project.ProjectState;
-
+import java.io.IOException;
+import java.net.URISyntaxException;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 @RunWith(MockitoJUnitRunner.class)
 public class GoImportFilterTest {
 
   private static final String PROD_URL = "https://gerrit-review.googlesource.com";
-  private static final String PAGE_200 = "<!DOCTYPE html>\n"
-      + "<html>\n"
-      + "<head>\n"
-      + "  <title>Gerrit-Go-Import</title>\n"
-      + "  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n"
-      + "  <meta name=\"go-import\" content=\"gerrit-review.googlesource.com/projectName git https://gerrit-review.googlesource.com/a/projectName\"/>\n"
-      + "</head>\n"
-      + "<body>\n"
-      + "<div>\n"
-      + "  Gerrit-Go-Import\n"
-      + "</div>\n"
-      + "</body>\n"
-      + "</html>";
+  private static final String PAGE_200 =
+      "<!DOCTYPE html>\n"
+          + "<html>\n"
+          + "<head>\n"
+          + "  <title>Gerrit-Go-Import</title>\n"
+          + "  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n"
+          + "  <meta name=\"go-import\" content=\"gerrit-review.googlesource.com/projectName git https://gerrit-review.googlesource.com/a/projectName\"/>\n"
+          + "</head>\n"
+          + "<body>\n"
+          + "<div>\n"
+          + "  Gerrit-Go-Import\n"
+          + "</div>\n"
+          + "</body>\n"
+          + "</html>";
 
   private GoImportFilter unitUnderTest;
 
-  @Mock
-  private ProjectCache mockProjectCache;
-  @Mock
-  private HttpServletRequest mockRequest;
-  @Mock
-  private HttpServletResponse mockResponse;
-  @Mock
-  private FilterChain mockChain;
-  @Mock
-  private ServletOutputStream mockOutputStream;
-  @Mock
-  private ProjectState mockProjectState;
+  @Mock private ProjectCache mockProjectCache;
+  @Mock private HttpServletRequest mockRequest;
+  @Mock private HttpServletResponse mockResponse;
+  @Mock private FilterChain mockChain;
+  @Mock private ServletOutputStream mockOutputStream;
+  @Mock private ProjectState mockProjectState;
 
   @Before
   public void setUp() throws Exception {
@@ -81,13 +72,13 @@ public class GoImportFilterTest {
   @Test
   public void testConstructor() throws Exception {
     assertThat(unitUnderTest.webUrl.endsWith("/")).isTrue();
-    unitUnderTest = new GoImportFilter(mockProjectCache,
-        "http://gerrit-review.googlesource.com:8080/");
+    unitUnderTest =
+        new GoImportFilter(mockProjectCache, "http://gerrit-review.googlesource.com:8080/");
     assertThat(unitUnderTest.webUrl.endsWith("/")).isTrue();
     assertThat(unitUnderTest.projectPrefix).isNotNull();
   }
 
-  @Test(expected=URISyntaxException.class)
+  @Test(expected = URISyntaxException.class)
   public void testConstructorWithURISyntaxException() throws Exception {
     unitUnderTest = new GoImportFilter(mockProjectCache, "\\\\");
   }
@@ -162,7 +153,7 @@ public class GoImportFilterTest {
     try {
       unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
       fail("IOException should occur!");
-    } catch(IOException e) {
+    } catch (IOException e) {
       assertThat(msg).isEqualTo(e.getMessage());
       verify(mockOutputStream, times(1)).write(any(byte[].class));
     }
@@ -175,7 +166,7 @@ public class GoImportFilterTest {
     try {
       unitUnderTest.doFilter(null, null, mockChain);
       fail("ServletException should occur!");
-    } catch(ServletException e) {
+    } catch (ServletException e) {
       assertThat(msg).isEqualTo(e.getMessage());
       verify(mockChain, times(1)).doFilter(null, null);
     }

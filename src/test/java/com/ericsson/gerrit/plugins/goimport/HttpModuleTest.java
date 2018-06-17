@@ -16,15 +16,12 @@ package com.ericsson.gerrit.plugins.goimport;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import com.ericsson.gerrit.plugins.goimport.GoImportFilter;
-import com.ericsson.gerrit.plugins.goimport.HttpModule;
 import com.google.gerrit.server.config.CanonicalWebUrl;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,8 +32,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class HttpModuleTest {
 
   private HttpModule unitUnderTest;
-  @Mock
-  private ProjectCache mockProjectCache;
+  @Mock private ProjectCache mockProjectCache;
 
   @Before
   public void setUp() throws Exception {
