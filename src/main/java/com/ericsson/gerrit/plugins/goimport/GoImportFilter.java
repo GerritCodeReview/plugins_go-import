@@ -23,12 +23,10 @@ import com.google.gerrit.server.project.ProjectState;
 import com.google.gwtexpui.server.CacheHeaders;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -39,38 +37,39 @@ import javax.servlet.http.HttpServletResponse;
 @Singleton
 public class GoImportFilter extends AllRequestFilter {
 
-  private static final String PAGE_404 = "<!DOCTYPE html>\n"
-      + "<html>\n"
-      + "<head>\n"
-      + "  <title>Gerrit-Go-Import</title>\n"
-      + "  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n"
-      + "</head>\n"
-      + "<body>\n"
-      + "NOT FOUND\n"
-      + "</body>\n"
-      + "</html>";
+  private static final String PAGE_404 =
+      "<!DOCTYPE html>\n"
+          + "<html>\n"
+          + "<head>\n"
+          + "  <title>Gerrit-Go-Import</title>\n"
+          + "  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n"
+          + "</head>\n"
+          + "<body>\n"
+          + "NOT FOUND\n"
+          + "</body>\n"
+          + "</html>";
 
-  private static final String PAGE_200 = "<!DOCTYPE html>\n"
-      + "<html>\n"
-      + "<head>\n"
-      + "  <title>Gerrit-Go-Import</title>\n"
-      + "  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n"
-      + "  <meta name=\"go-import\" content=\"${content}\"/>\n"
-      + "</head>\n"
-      + "<body>\n"
-      + "<div>\n"
-      + "  Gerrit-Go-Import\n"
-      + "</div>\n"
-      + "</body>\n"
-      + "</html>";
+  private static final String PAGE_200 =
+      "<!DOCTYPE html>\n"
+          + "<html>\n"
+          + "<head>\n"
+          + "  <title>Gerrit-Go-Import</title>\n"
+          + "  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n"
+          + "  <meta name=\"go-import\" content=\"${content}\"/>\n"
+          + "</head>\n"
+          + "<body>\n"
+          + "<div>\n"
+          + "  Gerrit-Go-Import\n"
+          + "</div>\n"
+          + "</body>\n"
+          + "</html>";
 
   private final ProjectCache projectCache;
   final String webUrl;
   final String projectPrefix;
 
   @Inject
-  GoImportFilter(ProjectCache projectCache,
-      @CanonicalWebUrl String webUrl)
+  GoImportFilter(ProjectCache projectCache, @CanonicalWebUrl String webUrl)
       throws URISyntaxException {
     this.projectCache = projectCache;
     this.webUrl = webUrl.replaceFirst("/?$", "/");
@@ -79,13 +78,12 @@ public class GoImportFilter extends AllRequestFilter {
 
   private String generateProjectPrefix() throws URISyntaxException {
     URI uri = new URI(webUrl);
-    return uri.getHost() + (uri.getPort() == -1 ? "" : ":" + uri.getPort())
-        + uri.getPath();
+    return uri.getHost() + (uri.getPort() == -1 ? "" : ":" + uri.getPort()) + uri.getPath();
   }
 
   @Override
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
+  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+      throws IOException, ServletException {
     if (request instanceof HttpServletRequest) {
       HttpServletRequest req = (HttpServletRequest) request;
       HttpServletResponse rsp = (HttpServletResponse) response;
@@ -110,12 +108,12 @@ public class GoImportFilter extends AllRequestFilter {
         byte[] tosend = PAGE_404.getBytes();
         rsp.setStatus(404);
         // Start with the longest-length project name first.
-        for( int length = pathParts.length; length > 0; length-- ) {
+        for (int length = pathParts.length; length > 0; length--) {
           // Create a new project name of the specified length; each time that we
           // go through this loop, the project name will become shorter and shorter.
           projectName = "";
-          for( int i = 0; i < length; i++ ) {
-            if( i > 0 ) {
+          for (int i = 0; i < length; i++) {
+            if (i > 0) {
               projectName += "/";
             }
             projectName += pathParts[i];
@@ -140,7 +138,6 @@ public class GoImportFilter extends AllRequestFilter {
     } else {
       chain.doFilter(request, response);
     }
-
   }
 
   private String getProjectName(String servletPath) {
@@ -148,7 +145,7 @@ public class GoImportFilter extends AllRequestFilter {
   }
 
   private CharSequence getContent(String projectName) {
-    return projectPrefix + projectName + " git " + webUrl  + "a/" + projectName;
+    return projectPrefix + projectName + " git " + webUrl + "a/" + projectName;
   }
 
   private boolean projectExists(String projectName) {
