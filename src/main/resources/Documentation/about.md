@@ -47,3 +47,9 @@ for the given requests:
 | `/bob/my-project/package1`         | `bob/my-project` |
 | `/bob/my-project/package1/folder2` | `bob/my-project` |
 
+### Access (Anonymous vs. Authenticated URLs)
+The exact git clone URL served to the client go command will depend on the
+project's configured ACLs. If the project is configured to allow anonymous
+read access to `refs/heads/*`, an anonymous URL will be served (e.g.
+`https://gerrit.example/bob/my-project`). Otherwise, a URL that requires
+authentication will be used (e.g. `https://gerrit.example/a/bob/my-project`).
