@@ -44,7 +44,7 @@ public class GoImportFilterTest {
           + "<head>\n"
           + "  <title>Gerrit-Go-Import</title>\n"
           + "  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n"
-          + "  <meta name=\"go-import\" content=\"gerrit-review.googlesource.com/projectName git https://gerrit-review.googlesource.com/a/projectName\"/>\n"
+          + "  <meta name=\"go-import\" content=\"gerrit-review.googlesource.com/projectName git https://gerrit-review.googlesource.com/projectName\"/>\n"
           + "</head>\n"
           + "<body>\n"
           + "<div>\n"

@@ -146,7 +146,7 @@ public class GoImportFilter extends AllRequestFilter {
   }
 
   private CharSequence getContent(String projectName) {
-    return projectPrefix + projectName + " git " + webUrl + "a/" + projectName;
+    return projectPrefix + projectName + " git " + webUrl + projectName;
   }
 
   private boolean projectExists(String projectName) {
