@@ -16,7 +16,9 @@ package com.ericsson.gerrit.plugins.goimport;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import com.google.gerrit.server.AnonymousUser;
 import com.google.gerrit.server.config.CanonicalWebUrl;
+import com.google.gerrit.server.permissions.PermissionBackend;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
@@ -32,6 +34,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class HttpModuleTest {
 
   private HttpModule unitUnderTest;
+  @Mock private AnonymousUser mockAnon;
+  @Mock private PermissionBackend mockPerms;
   @Mock private ProjectCache mockProjectCache;
 
   @Before
@@ -53,6 +57,8 @@ public class HttpModuleTest {
   public class TestModule extends AbstractModule {
     @Override
     protected void configure() {
+      bind(AnonymousUser.class).toInstance(mockAnon);
+      bind(PermissionBackend.class).toInstance(mockPerms);
       bind(ProjectCache.class).toInstance(mockProjectCache);
     }
 
