@@ -16,7 +16,11 @@ package com.ericsson.gerrit.plugins.goimport;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.server.project.ProjectCache;
