@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3699693_bdc232cb",
+        "filename": "src/main/java/com/ericsson/gerrit/plugins/goimport/GoImportFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2018-09-28T20:35:36Z",
+      "side": 0,
+      "message": "How about making this configurable instead? Default should be to enable authentication I think.",
+      "range": {
+        "startLine": 149,
+        "startChar": 60,
+        "endLine": 149,
+        "endChar": 67
+      },
+      "revId": "8522d07e1d7dae34f40cdd0e73f1165f3675b49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "736d0df0_bf8133da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2018-09-28T20:35:36Z",
+      "side": 1,
+      "message": "Not always the case I think. What if some deployment does require such security? Meaning, making sure that a sensitive project does not get cloned by unauthorised users?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 15
+      },
+      "revId": "272ee43173671acfc6918ae86b1e893a9a9ba4be",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
