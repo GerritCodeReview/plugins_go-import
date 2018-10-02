@@ -22,6 +22,30 @@
       "revId": "272ee43173671acfc6918ae86b1e893a9a9ba4be",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59265483_11792706",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1069829
+      },
+      "writtenOn": "2018-10-02T00:13:31Z",
+      "side": 1,
+      "message": "I could see that being important in certain cases, but it\u0027s my understanding that the Go import system isn\u0027t designed for deployment so much as it is for ease of download/installation of packages and libraries—and of course globally unique namespacing. Consider just how cumbersome it is to provide SCM credentials to the `git` commands behind `go install` and `go get` and why there\u0027s no support for it in the latter two commands of the native Go toolchain.\n\nMight it be better in scenarios that do require auth to simply clone/install repos manually, and allow for the more common case (no auth) to be served by default?",
+      "parentUuid": "736d0df0_bf8133da",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 15
+      },
+      "revId": "272ee43173671acfc6918ae86b1e893a9a9ba4be",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
