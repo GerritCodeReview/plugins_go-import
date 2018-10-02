@@ -46,6 +46,30 @@
       "revId": "8522d07e1d7dae34f40cdd0e73f1165f3675b49b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4feb625a_5e3bb18c",
+        "filename": "src/main/java/com/ericsson/gerrit/plugins/goimport/GoImportFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2018-10-02T23:49:45Z",
+      "side": 0,
+      "message": "The logic could be to try first without authentication (this change), and based on the nature of the response, to dynamically retry with the authentication-equipped url (as we had it before this change). This would not require configuration to be added in.",
+      "parentUuid": "37d0159f_44ae3a08",
+      "range": {
+        "startLine": 149,
+        "startChar": 60,
+        "endLine": 149,
+        "endChar": 67
+      },
+      "revId": "8522d07e1d7dae34f40cdd0e73f1165f3675b49b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
