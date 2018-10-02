@@ -46,6 +46,30 @@
       "revId": "272ee43173671acfc6918ae86b1e893a9a9ba4be",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1421a483_ed178066",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2018-10-02T23:49:45Z",
+      "side": 1,
+      "message": "Or support both scenarios dynamically through this plugin, as per my other /related reply.",
+      "parentUuid": "59265483_11792706",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 15
+      },
+      "revId": "272ee43173671acfc6918ae86b1e893a9a9ba4be",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
