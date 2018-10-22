@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c9460392_d0113ccb",
+        "filename": "src/main/java/com/ericsson/gerrit/plugins/goimport/GoImportFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1069829
+      },
+      "writtenOn": "2018-10-22T18:30:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7ebe07d_29a8eddc",
+      "revId": "360d9bf5bb53da3ab46a9e5022c7815cb4e654e1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78019cad_afc594f9",
         "filename": "src/test/java/com/ericsson/gerrit/plugins/goimport/GoImportFilterTest.java",
         "patchSetId": 5
@@ -33,6 +51,24 @@
       "revId": "360d9bf5bb53da3ab46a9e5022c7815cb4e654e1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1208efb6_1173cbcb",
+        "filename": "src/test/java/com/ericsson/gerrit/plugins/goimport/GoImportFilterTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1069829
+      },
+      "writtenOn": "2018-10-22T18:30:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78019cad_afc594f9",
+      "revId": "360d9bf5bb53da3ab46a9e5022c7815cb4e654e1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -56,6 +92,30 @@
       "revId": "360d9bf5bb53da3ab46a9e5022c7815cb4e654e1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4645a34_a218fd48",
+        "filename": "src/test/java/com/ericsson/gerrit/plugins/goimport/HttpModuleTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1069829
+      },
+      "writtenOn": "2018-10-22T18:30:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a8c770f_5cf92293",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 34
+      },
+      "revId": "360d9bf5bb53da3ab46a9e5022c7815cb4e654e1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
