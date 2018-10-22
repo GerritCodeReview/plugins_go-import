@@ -47,7 +47,7 @@ tree, and issue the command:
 The output is created in:
 
 ```
-  buck-out/gen/plugins/@PLUGIN@/@PLUGIN@.jar
+  bazel-genfiles/plugins/@PLUGIN@/@PLUGIN@.jar
 ```
 
 This project can be imported into the Eclipse IDE.
