@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e825d0b_d883e877",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2018-10-26T20:37:36Z",
+      "side": 1,
+      "message": "My only concern left is, what if there is another project permission that leads to failing the anonymous request? Meaning, as permissions are aggregated so the least permissive one gets applied, ultimately. Welcoming other reviewers comments here, about the likelihood or logical possibility of such cases.\n\nThere might be a need for a fall-back mechanism as previously proposed, where a failure being served by the anonymous URL could lead to authenticating as a second/last resort.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 52
+      },
+      "revId": "a17c33139096551ba1185a66b718617d24504c4f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
