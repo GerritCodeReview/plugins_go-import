@@ -22,6 +22,30 @@
       "revId": "a17c33139096551ba1185a66b718617d24504c4f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91bd47f1_eb5c4a18",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1069829
+      },
+      "writtenOn": "2018-10-29T16:33:51Z",
+      "side": 1,
+      "message": "Thanks, Marco.\n\nCan you elaborate on where/how the fall-back mechanism you\u0027re proposing would be implemented? I don\u0027t see how the plugin can know whether or not auth for the git clone would fail on the client side.",
+      "parentUuid": "9e825d0b_d883e877",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 52
+      },
+      "revId": "a17c33139096551ba1185a66b718617d24504c4f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
