@@ -46,6 +46,30 @@
       "revId": "a17c33139096551ba1185a66b718617d24504c4f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0365e690_2d93120c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2018-10-30T13:04:48Z",
+      "side": 1,
+      "message": "\u003e Thanks, Marco.\n\nYou\u0027re always welcome, Dan; thx to you for this WiP.\n\n\u003e Can you elaborate on where/how the fall-back mechanism you\u0027re proposing would be implemented? I don\u0027t see how the plugin can know whether or not auth for the git clone would fail on the client side.\n\nMaybe by means of analysing the response to the (here non-auth) request? I\u0027m currently lacking time to elaborate further on this. However maybe another reviewer would be ready to comment accordingly(?)\n\nThere is also that other aspect above about other permission(s) that could anyway override the refs/heads/* one. More research on the possible counter-permissions side might help as well.",
+      "parentUuid": "91bd47f1_eb5c4a18",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 52
+      },
+      "revId": "a17c33139096551ba1185a66b718617d24504c4f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
