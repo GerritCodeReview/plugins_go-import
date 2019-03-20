@@ -94,6 +94,30 @@
       "revId": "a17c33139096551ba1185a66b718617d24504c4f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef8dd7d1_51609d01",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-03-20T14:27:22Z",
+      "side": 1,
+      "message": "\u003e \u003e Maybe by means of analysing the response to the (here non-auth) request? I\u0027m currently lacking time to elaborate further on this. However maybe another reviewer would be ready to comment accordingly(?)\n\u003e \n\u003e Could you provide further direction on this approach? I\u0027m unsure of how to proceed on this patch.\n\nI cannot work on this nowadays myself; maybe later on though.",
+      "parentUuid": "008a4676_ebdec699",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 52
+      },
+      "revId": "a17c33139096551ba1185a66b718617d24504c4f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
