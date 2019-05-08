@@ -142,6 +142,30 @@
       "revId": "a17c33139096551ba1185a66b718617d24504c4f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "747d6c5d_a2cd7ef9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-05-08T19:02:42Z",
+      "side": 1,
+      "message": "\u003e What scenario would lead to supporting anonymous clone for a repo, then blacklisting a specific head?\n\nNone that I\u0027m aware of, at least from the top of my head.\n\n\u003e I can understand disallowing push for various branches, but I\u0027d think that the scenario would be that you either allow anonymous clone or you don\u0027t.\n\nMost likely, yes. Now, in order to finalize this change (finally, sorry), I think it\u0027d require a corresponding plugin Documentation amend. This is so that the hereby introduced /new (changed) behavior is clearly documented, thus used on purpose, as opposed to accidentally (e.g., opening this backdoor if unknowingly misconfiguring the project). -At least project owners and administrators can be warned or made aware.",
+      "parentUuid": "843daddd_8615c0e1",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 52
+      },
+      "revId": "a17c33139096551ba1185a66b718617d24504c4f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
