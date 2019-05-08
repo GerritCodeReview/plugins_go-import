@@ -118,6 +118,30 @@
       "revId": "a17c33139096551ba1185a66b718617d24504c4f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "843daddd_8615c0e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1072126
+      },
+      "writtenOn": "2019-05-08T01:15:26Z",
+      "side": 1,
+      "message": "What scenario would lead to supporting anonymous clone for a repo, then blacklisting a specific head? I can understand disallowing push for various branches, but I\u0027d think that the scenario would be that you either allow anonymous clone or you don\u0027t.",
+      "parentUuid": "ef8dd7d1_51609d01",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 52
+      },
+      "revId": "a17c33139096551ba1185a66b718617d24504c4f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
