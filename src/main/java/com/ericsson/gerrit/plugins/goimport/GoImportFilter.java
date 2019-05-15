@@ -17,7 +17,7 @@ package com.ericsson.gerrit.plugins.goimport;
 import com.google.common.base.Strings;
 import com.google.gerrit.httpd.AllRequestFilter;
 import com.google.gerrit.httpd.HtmlDomUtil;
-import com.google.gerrit.reviewdb.client.Branch;
+import com.google.gerrit.reviewdb.client.BranchNameKey;
 import com.google.gerrit.reviewdb.client.Project;
 import com.google.gerrit.reviewdb.client.RefNames;
 import com.google.gerrit.server.AnonymousUser;
@@ -173,14 +173,14 @@ public class GoImportFilter extends AllRequestFilter {
 
   private boolean allowsAnonymousAccess(String projectName) {
     AnonymousUser anonymous = anonProvider.get();
-    Branch.NameKey heads =
-        new Branch.NameKey(new Project.NameKey(projectName), RefNames.REFS_HEADS);
+    BranchNameKey heads =
+        BranchNameKey.create(Project.nameKey(projectName), RefNames.REFS_HEADS);
 
     return permissions.user(anonymous).ref(heads).testOrFalse(RefPermission.READ);
   }
 
   private boolean projectExists(String projectName) {
-    ProjectState p = projectCache.get(new Project.NameKey(projectName));
+    ProjectState p = projectCache.get(Project.nameKey(projectName));
     return p != null;
   }
 }

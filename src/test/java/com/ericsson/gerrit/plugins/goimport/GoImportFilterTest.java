@@ -138,7 +138,7 @@ public class GoImportFilterTest {
   public void testDoFilterWithExistingProject() throws Exception {
     when(mockRequest.getServletPath()).thenReturn("/projectName");
     when(mockRequest.getParameter("go-get")).thenReturn("1");
-    when(mockProjectCache.get(new Project.NameKey("projectName"))).thenReturn(mockProjectState);
+    when(mockProjectCache.get(Project.nameKey("projectName"))).thenReturn(mockProjectState);
     when(mockPermsForRef.testOrFalse(RefPermission.READ)).thenReturn(false);
     unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
     verify(mockOutputStream, times(1)).write(PAGE_200_AUTH.getBytes());
@@ -152,7 +152,7 @@ public class GoImportFilterTest {
   public void testDoFilterWithExistingProjectAndPackage() throws Exception {
     when(mockRequest.getServletPath()).thenReturn("/projectName/my/package");
     when(mockRequest.getParameter("go-get")).thenReturn("1");
-    when(mockProjectCache.get(new Project.NameKey("projectName"))).thenReturn(mockProjectState);
+    when(mockProjectCache.get(Project.nameKey("projectName"))).thenReturn(mockProjectState);
     when(mockPermsForRef.testOrFalse(RefPermission.READ)).thenReturn(false);
     unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
     verify(mockOutputStream, times(1)).write(PAGE_200_AUTH.getBytes());
@@ -166,7 +166,7 @@ public class GoImportFilterTest {
   public void testDoFilterWithAnonymousAccessibleProject() throws Exception {
     when(mockRequest.getServletPath()).thenReturn("/projectName");
     when(mockRequest.getParameter("go-get")).thenReturn("1");
-    when(mockProjectCache.get(new Project.NameKey("projectName"))).thenReturn(mockProjectState);
+    when(mockProjectCache.get(Project.nameKey("projectName"))).thenReturn(mockProjectState);
     when(mockPermsForRef.testOrFalse(RefPermission.READ)).thenReturn(true);
     unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
     verify(mockOutputStream, times(1)).write(PAGE_200_ANON.getBytes());
