@@ -15,7 +15,7 @@
 package com.ericsson.gerrit.plugins.goimport;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.junit.Assert.fail;
+import static com.google.gerrit.testing.GerritJUnit.assertThrows;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
@@ -195,25 +195,20 @@ public class GoImportFilterTest {
     when(mockRequest.getParameter("go-get")).thenReturn("1");
     doThrow(new IOException(msg)).when(mockOutputStream).write(any(byte[].class));
     when(mockProjectCache.get(any(Project.NameKey.class))).thenReturn(mockProjectState);
-    try {
-      unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
-      fail("IOException should occur!");
-    } catch (IOException e) {
-      assertThat(msg).isEqualTo(e.getMessage());
-      verify(mockOutputStream, times(1)).write(any(byte[].class));
-    }
+    IOException thrown =
+        assertThrows(
+            IOException.class, () -> unitUnderTest.doFilter(mockRequest, mockResponse, mockChain));
+    assertThat(thrown).hasMessageThat().isEqualTo(msg);
+    verify(mockOutputStream, times(1)).write(any(byte[].class));
   }
 
   @Test
   public void testDoFilterWithServletException() throws Exception {
     String msg = "test-serv-error";
     doThrow(new ServletException(msg)).when(mockChain).doFilter(null, null);
-    try {
-      unitUnderTest.doFilter(null, null, mockChain);
-      fail("ServletException should occur!");
-    } catch (ServletException e) {
-      assertThat(msg).isEqualTo(e.getMessage());
-      verify(mockChain, times(1)).doFilter(null, null);
-    }
+    ServletException thrown =
+        assertThrows(ServletException.class, () -> unitUnderTest.doFilter(null, null, mockChain));
+    assertThat(thrown).hasMessageThat().isEqualTo(msg);
+    verify(mockChain, times(1)).doFilter(null, null);
   }
 }
