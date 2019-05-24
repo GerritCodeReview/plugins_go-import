@@ -51,7 +51,7 @@ public class HttpModuleTest {
     GoImportFilter filter1 = injector.getInstance(GoImportFilter.class);
     assertThat(filter1).isNotNull();
     GoImportFilter filter2 = injector.getInstance(GoImportFilter.class);
-    assertThat(filter1).isSameAs(filter2);
+    assertThat(filter1).isSameInstanceAs(filter2);
   }
 
   public class TestModule extends AbstractModule {

@@ -3,3 +3,4 @@
 /.settings
 /bazel-*
 /eclipse-out
+/.apt_generated/
