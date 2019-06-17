@@ -20,7 +20,7 @@ gerrit_plugin(
 )
 
 junit_tests(
-    name = "go_import_tests",
+    name = "go-import_tests",
     testonly = 1,
     srcs = glob(["src/test/java/**/*.java"]),
     tags = ["go-import"],
@@ -35,6 +35,5 @@ java_library(
     visibility = ["//visibility:public"],
     exports = PLUGIN_DEPS + PLUGIN_TEST_DEPS + [
         ":go-import__plugin",
-        "@mockito//jar",
     ],
 )
