@@ -21,7 +21,7 @@ gerrit_plugin(
 )
 
 junit_tests(
-    name = "go_import_tests",
+    name = "go-import_tests",
     testonly = 1,
     srcs = glob(["src/test/java/**/*.java"]),
     tags = ["go-import"],
