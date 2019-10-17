@@ -15,11 +15,11 @@
 package com.ericsson.gerrit.plugins.goimport;
 
 import com.google.common.base.Strings;
+import com.google.gerrit.entities.BranchNameKey;
+import com.google.gerrit.entities.Project;
+import com.google.gerrit.entities.RefNames;
 import com.google.gerrit.httpd.AllRequestFilter;
 import com.google.gerrit.httpd.HtmlDomUtil;
-import com.google.gerrit.reviewdb.client.BranchNameKey;
-import com.google.gerrit.reviewdb.client.Project;
-import com.google.gerrit.reviewdb.client.RefNames;
 import com.google.gerrit.server.AnonymousUser;
 import com.google.gerrit.server.config.CanonicalWebUrl;
 import com.google.gerrit.server.permissions.PermissionBackend;
