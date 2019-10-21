@@ -90,7 +90,8 @@ public class GoImportFilter extends AllRequestFilter {
     if (request instanceof HttpServletRequest) {
       HttpServletRequest req = (HttpServletRequest) request;
       HttpServletResponse rsp = (HttpServletResponse) response;
-      String servletPath = req.getServletPath();
+      // Remove authenticated request prefix "/a".
+      String path = req.getServletPath().replaceFirst("^/a/", "/");
       if ("1".equals(req.getParameter("go-get"))) {
         // Because Gerrit allows for arbitrary-depth project names
         // (that is, both "a" and "a/b/c" are both legal), we are going
@@ -104,7 +105,7 @@ public class GoImportFilter extends AllRequestFilter {
         // 3. If the requested path is "a/c", then project "a" would be chosen.
         // 4. If the requested path is "a/b/c/d", then project "a/b" would be chosen.
         // 5. If the requested path is "x/y/z", then this will fail with a 404 error.
-        String existent = getLongestMatch(getProjectName(servletPath));
+        String existent = getLongestMatch(getProjectName(path));
         byte[] toSend = PAGE_404.getBytes();
         rsp.setStatus(404);
         if (!Strings.isNullOrEmpty(existent)) {
