@@ -48,6 +48,8 @@ public class GoImportFilterTest {
   private static final String CONTENT_FORMAT = "%1$s/%3$s git %2$s/%3$s";
   private static final String CONTENT =
       String.format(CONTENT_FORMAT, PROD_FQDN, auth(PROD_URL), PROJECT_NAME);
+  private static final String AUTH_CONTENT =
+      String.format(CONTENT_FORMAT, auth(PROD_FQDN), auth(PROD_URL), PROJECT_NAME);
 
   /*
    * URLs that requires authentication has an additional /a.
@@ -56,8 +58,10 @@ public class GoImportFilterTest {
     return url + "/a";
   }
 
-  private static byte[] response200() {
-    return PAGE_200.replace(CONTENT_PLH, CONTENT).getBytes();
+  private static byte[] response200(boolean authenticated) {
+    return authenticated
+        ? PAGE_200.replace(CONTENT_PLH, AUTH_CONTENT).getBytes()
+        : PAGE_200.replace(CONTENT_PLH, CONTENT).getBytes();
   }
 
   private GoImportFilter unitUnderTest;
@@ -118,7 +122,19 @@ public class GoImportFilterTest {
     when(mockRequest.getParameter("go-get")).thenReturn("1");
     when(mockProjectCache.get(new Project.NameKey(PROJECT_NAME))).thenReturn(mockProjectState);
     unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
-    verify(mockOutputStream, times(1)).write(response200());
+    verify(mockOutputStream, times(1)).write(response200(false));
+    verify(mockChain, times(0)).doFilter(mockRequest, mockResponse);
+    verify(mockProjectCache, times(1)).get(any(Project.NameKey.class));
+    verify(mockResponse, times(1)).setStatus(200);
+  }
+
+  @Test
+  public void testDoFilterAuthenticatedWithExistingProject() throws Exception {
+    when(mockRequest.getServletPath()).thenReturn("/a/" + PROJECT_NAME);
+    when(mockRequest.getParameter("go-get")).thenReturn("1");
+    when(mockProjectCache.get(new Project.NameKey(PROJECT_NAME))).thenReturn(mockProjectState);
+    unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
+    verify(mockOutputStream, times(1)).write(response200(true));
     verify(mockChain, times(0)).doFilter(mockRequest, mockResponse);
     verify(mockProjectCache, times(1)).get(any(Project.NameKey.class));
     verify(mockResponse, times(1)).setStatus(200);
@@ -130,7 +146,7 @@ public class GoImportFilterTest {
     when(mockRequest.getParameter("go-get")).thenReturn("1");
     when(mockProjectCache.get(new Project.NameKey(PROJECT_NAME))).thenReturn(mockProjectState);
     unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
-    verify(mockOutputStream, times(1)).write(response200());
+    verify(mockOutputStream, times(1)).write(response200(false));
     verify(mockChain, times(0)).doFilter(mockRequest, mockResponse);
     verify(mockProjectCache, times(3)).get(any(Project.NameKey.class));
     verify(mockResponse, times(1)).setStatus(200);
