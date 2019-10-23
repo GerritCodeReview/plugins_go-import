@@ -22,6 +22,30 @@
       "revId": "eb15143ce401266d052c40cb113c1e148720c931",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26ccda6e_d37258fc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1014252
+      },
+      "writtenOn": "2019-10-23T12:16:57Z",
+      "side": 1,
+      "message": "I obviously missed that as well :)",
+      "parentUuid": "6858ec77_32af70b6",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "eb15143ce401266d052c40cb113c1e148720c931",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
