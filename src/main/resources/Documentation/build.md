@@ -61,7 +61,7 @@ Gerrit core in`tools/bzl/plugins.bzl`, and execute:
 To execute the tests run:
 
 ```
-  bazel test plugins/@PLUGIN@:go_import_tests
+  bazel test plugins/@PLUGIN@:go-import_tests
 ```
 
 How to build the Gerrit Plugin API is described in the [Gerrit
