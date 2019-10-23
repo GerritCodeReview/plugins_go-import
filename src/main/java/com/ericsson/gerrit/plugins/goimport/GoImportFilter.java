@@ -14,6 +14,7 @@
 
 package com.ericsson.gerrit.plugins.goimport;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
 import com.google.gerrit.httpd.AllRequestFilter;
 import com.google.gerrit.httpd.HtmlDomUtil;
@@ -39,6 +40,25 @@ import javax.servlet.http.HttpServletResponse;
 
 @Singleton
 public class GoImportFilter extends AllRequestFilter {
+  @VisibleForTesting static final String CONTENT_PLH = "${content}";
+
+  @VisibleForTesting
+  static final String PAGE_200 =
+      "<!DOCTYPE html>\n"
+          + "<html>\n"
+          + "<head>\n"
+          + "  <title>Gerrit-Go-Import</title>\n"
+          + "  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n"
+          + "  <meta name=\"go-import\" content=\""
+          + CONTENT_PLH
+          + "\"/>\n"
+          + "</head>\n"
+          + "<body>\n"
+          + "<div>\n"
+          + "  Gerrit-Go-Import\n"
+          + "</div>\n"
+          + "</body>\n"
+          + "</html>";
 
   private static final String PAGE_404 =
       "<!DOCTYPE html>\n"
@@ -49,21 +69,6 @@ public class GoImportFilter extends AllRequestFilter {
           + "</head>\n"
           + "<body>\n"
           + "NOT FOUND\n"
-          + "</body>\n"
-          + "</html>";
-
-  private static final String PAGE_200 =
-      "<!DOCTYPE html>\n"
-          + "<html>\n"
-          + "<head>\n"
-          + "  <title>Gerrit-Go-Import</title>\n"
-          + "  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n"
-          + "  <meta name=\"go-import\" content=\"${content}\"/>\n"
-          + "</head>\n"
-          + "<body>\n"
-          + "<div>\n"
-          + "  Gerrit-Go-Import\n"
-          + "</div>\n"
           + "</body>\n"
           + "</html>";
 
@@ -108,7 +113,7 @@ public class GoImportFilter extends AllRequestFilter {
         byte[] toSend = PAGE_404.getBytes();
         rsp.setStatus(404);
         if (!Strings.isNullOrEmpty(existent)) {
-          toSend = PAGE_200.replace("${content}", getContent(existent)).getBytes();
+          toSend = PAGE_200.replace(CONTENT_PLH, getContent(existent)).getBytes();
           rsp.setStatus(200);
         }
         CacheHeaders.setNotCacheable(rsp);
