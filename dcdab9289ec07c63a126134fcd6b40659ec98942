@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5e0776b_8edf0a75",
+        "filename": "src/main/java/com/ericsson/gerrit/plugins/goimport/GoImportFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-10-24T18:21:22Z",
+      "side": 1,
+      "message": "Extract and reuse constant across? (Duplicated; follow-up change maybe.)",
+      "range": {
+        "startLine": 58,
+        "startChar": 15,
+        "endLine": 58,
+        "endChar": 31
+      },
+      "revId": "dcdab9289ec07c63a126134fcd6b40659ec98942",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93897ef7_a5e71b96",
+        "filename": "src/test/java/com/ericsson/gerrit/plugins/goimport/GoImportFilterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-10-24T18:21:22Z",
+      "side": 1,
+      "message": "Make this a standard javadoc method header comment instead?",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 4
+      },
+      "revId": "dcdab9289ec07c63a126134fcd6b40659ec98942",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c698645_78c4c4cd",
+        "filename": "src/test/java/com/ericsson/gerrit/plugins/goimport/GoImportFilterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-10-24T18:21:22Z",
+      "side": 1,
+      "message": "require",
+      "range": {
+        "startLine": 53,
+        "startChar": 15,
+        "endLine": 53,
+        "endChar": 23
+      },
+      "revId": "dcdab9289ec07c63a126134fcd6b40659ec98942",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
