@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6bc1d140_e01a14cb",
+        "filename": "src/main/java/com/ericsson/gerrit/plugins/goimport/GoImportFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1014252
+      },
+      "writtenOn": "2019-10-25T09:12:27Z",
+      "side": 1,
+      "message": "I\u0027d rather not do that in this change since it\u0027s main concern is refactoring the test-case.",
+      "parentUuid": "d5e0776b_8edf0a75",
+      "range": {
+        "startLine": 58,
+        "startChar": 15,
+        "endLine": 58,
+        "endChar": 31
+      },
+      "revId": "dcdab9289ec07c63a126134fcd6b40659ec98942",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "93897ef7_a5e71b96",
         "filename": "src/test/java/com/ericsson/gerrit/plugins/goimport/GoImportFilterTest.java",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "16a15dd0_2433d9b9",
+        "filename": "src/test/java/com/ericsson/gerrit/plugins/goimport/GoImportFilterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1014252
+      },
+      "writtenOn": "2019-10-25T09:12:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93897ef7_a5e71b96",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 4
+      },
+      "revId": "dcdab9289ec07c63a126134fcd6b40659ec98942",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7c698645_78c4c4cd",
         "filename": "src/test/java/com/ericsson/gerrit/plugins/goimport/GoImportFilterTest.java",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "dcdab9289ec07c63a126134fcd6b40659ec98942",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3a240f4_49a8d965",
+        "filename": "src/test/java/com/ericsson/gerrit/plugins/goimport/GoImportFilterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1014252
+      },
+      "writtenOn": "2019-10-25T09:12:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c698645_78c4c4cd",
+      "range": {
+        "startLine": 53,
+        "startChar": 15,
+        "endLine": 53,
+        "endChar": 23
+      },
+      "revId": "dcdab9289ec07c63a126134fcd6b40659ec98942",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
