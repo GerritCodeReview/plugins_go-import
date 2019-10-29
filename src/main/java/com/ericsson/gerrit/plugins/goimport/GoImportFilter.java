@@ -14,21 +14,16 @@
 
 package com.ericsson.gerrit.plugins.goimport;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
 import com.google.gerrit.httpd.AllRequestFilter;
 import com.google.gerrit.httpd.HtmlDomUtil;
-import com.google.gerrit.reviewdb.client.Branch;
 import com.google.gerrit.reviewdb.client.Project;
-import com.google.gerrit.reviewdb.client.RefNames;
-import com.google.gerrit.server.AnonymousUser;
 import com.google.gerrit.server.config.CanonicalWebUrl;
-import com.google.gerrit.server.permissions.PermissionBackend;
-import com.google.gerrit.server.permissions.RefPermission;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.gerrit.server.project.ProjectState;
 import com.google.gerrit.util.http.CacheHeaders;
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,6 +31,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.regex.Pattern;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -45,6 +41,25 @@ import javax.servlet.http.HttpServletResponse;
 
 @Singleton
 public class GoImportFilter extends AllRequestFilter {
+  @VisibleForTesting static final String CONTENT_PLH = "${content}";
+
+  @VisibleForTesting
+  static final String PAGE_200 =
+      "<!DOCTYPE html>\n"
+          + "<html>\n"
+          + "<head>\n"
+          + "  <title>Gerrit-Go-Import</title>\n"
+          + "  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n"
+          + "  <meta name=\"go-import\" content=\""
+          + CONTENT_PLH
+          + "\"/>\n"
+          + "</head>\n"
+          + "<body>\n"
+          + "<div>\n"
+          + "  Gerrit-Go-Import\n"
+          + "</div>\n"
+          + "</body>\n"
+          + "</html>";
 
   private static final String PAGE_404 =
       "<!DOCTYPE html>\n"
@@ -58,36 +73,14 @@ public class GoImportFilter extends AllRequestFilter {
           + "</body>\n"
           + "</html>";
 
-  private static final String PAGE_200 =
-      "<!DOCTYPE html>\n"
-          + "<html>\n"
-          + "<head>\n"
-          + "  <title>Gerrit-Go-Import</title>\n"
-          + "  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n"
-          + "  <meta name=\"go-import\" content=\"${content}\"/>\n"
-          + "</head>\n"
-          + "<body>\n"
-          + "<div>\n"
-          + "  Gerrit-Go-Import\n"
-          + "</div>\n"
-          + "</body>\n"
-          + "</html>";
-
-  private final Provider<AnonymousUser> anonProvider;
-  private final PermissionBackend permissions;
+  private static final Pattern AUTHENTICATED_REQ = Pattern.compile("^/a/.*");
   private final ProjectCache projectCache;
   final String webUrl;
   final String projectPrefix;
 
   @Inject
-  GoImportFilter(
-      Provider<AnonymousUser> anonProvider,
-      PermissionBackend permissions,
-      ProjectCache projectCache,
-      @CanonicalWebUrl String webUrl)
+  GoImportFilter(ProjectCache projectCache, @CanonicalWebUrl String webUrl)
       throws URISyntaxException {
-    this.anonProvider = anonProvider;
-    this.permissions = permissions;
     this.projectCache = projectCache;
     this.webUrl = webUrl.replaceFirst("/?$", "/");
     this.projectPrefix = generateProjectPrefix();
@@ -104,8 +97,11 @@ public class GoImportFilter extends AllRequestFilter {
     if (request instanceof HttpServletRequest) {
       HttpServletRequest req = (HttpServletRequest) request;
       HttpServletResponse rsp = (HttpServletResponse) response;
-      String servletPath = req.getServletPath();
       if ("1".equals(req.getParameter("go-get"))) {
+        boolean authenticated = AUTHENTICATED_REQ.matcher(req.getServletPath()).matches();
+        // For authenticated requests remove prefix "/a" to get project name.
+        String path =
+            authenticated ? req.getServletPath().replaceFirst("^/a/", "/") : req.getServletPath();
         // Because Gerrit allows for arbitrary-depth project names
         // (that is, both "a" and "a/b/c" are both legal), we are going
         // to find the most specific such project that matches the path.
@@ -118,11 +114,11 @@ public class GoImportFilter extends AllRequestFilter {
         // 3. If the requested path is "a/c", then project "a" would be chosen.
         // 4. If the requested path is "a/b/c/d", then project "a/b" would be chosen.
         // 5. If the requested path is "x/y/z", then this will fail with a 404 error.
-        String existent = getLongestMatch(getProjectName(servletPath));
+        String existent = getLongestMatch(getProjectName(path));
         byte[] toSend = PAGE_404.getBytes();
         rsp.setStatus(404);
         if (!Strings.isNullOrEmpty(existent)) {
-          toSend = PAGE_200.replace("${content}", getContent(existent)).getBytes();
+          toSend = PAGE_200.replace(CONTENT_PLH, getContent(existent, authenticated)).getBytes();
           rsp.setStatus(200);
         }
         CacheHeaders.setNotCacheable(rsp);
@@ -159,24 +155,14 @@ public class GoImportFilter extends AllRequestFilter {
     return servletPath.replaceFirst("/", "");
   }
 
-  private CharSequence getContent(String projectName) {
-    return projectPrefix + projectName + " git " + getRepoRoot(projectName);
-  }
-
-  private String getRepoRoot(String projectName) {
-    if (allowsAnonymousAccess(projectName)) {
-      return webUrl + projectName;
-    }
-
-    return webUrl + "a/" + projectName;
-  }
-
-  private boolean allowsAnonymousAccess(String projectName) {
-    AnonymousUser anonymous = anonProvider.get();
-    Branch.NameKey heads =
-        new Branch.NameKey(new Project.NameKey(projectName), RefNames.REFS_HEADS);
-
-    return permissions.user(anonymous).ref(heads).testOrFalse(RefPermission.READ);
+  private CharSequence getContent(String projectName, boolean authenticated) {
+    return projectPrefix
+        + (authenticated ? "a/" : "")
+        + projectName
+        + " git "
+        + webUrl
+        + "a/"
+        + projectName;
   }
 
   private boolean projectExists(String projectName) {
