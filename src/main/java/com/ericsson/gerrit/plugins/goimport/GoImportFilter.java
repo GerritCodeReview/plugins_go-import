@@ -18,13 +18,19 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
 import com.google.gerrit.httpd.AllRequestFilter;
 import com.google.gerrit.httpd.HtmlDomUtil;
+import com.google.gerrit.reviewdb.client.Branch;
 import com.google.gerrit.reviewdb.client.Project;
+import com.google.gerrit.reviewdb.client.RefNames;
+import com.google.gerrit.server.AnonymousUser;
 import com.google.gerrit.server.config.CanonicalWebUrl;
+import com.google.gerrit.server.permissions.PermissionBackend;
+import com.google.gerrit.server.permissions.RefPermission;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.gerrit.server.project.ProjectState;
 import com.google.gerrit.util.http.CacheHeaders;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.inject.Provider;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
@@ -74,13 +80,21 @@ public class GoImportFilter extends AllRequestFilter {
           + "</html>";
 
   private static final Pattern AUTHENTICATED_REQ = Pattern.compile("^/a/.*");
+  private final Provider<AnonymousUser> anonProvider;
+  private final PermissionBackend permissions;
   private final ProjectCache projectCache;
   final String webUrl;
   final String projectPrefix;
 
   @Inject
-  GoImportFilter(ProjectCache projectCache, @CanonicalWebUrl String webUrl)
+  GoImportFilter(
+      Provider<AnonymousUser> anonProvider,
+      PermissionBackend permissions,
+      ProjectCache projectCache,
+      @CanonicalWebUrl String webUrl)
       throws URISyntaxException {
+    this.anonProvider = anonProvider;
+    this.permissions = permissions;
     this.projectCache = projectCache;
     this.webUrl = webUrl.replaceFirst("/?$", "/");
     this.projectPrefix = generateProjectPrefix();
@@ -160,9 +174,22 @@ public class GoImportFilter extends AllRequestFilter {
         + (authenticated ? "a/" : "")
         + projectName
         + " git "
-        + webUrl
-        + "a/"
-        + projectName;
+	+ getRepoRoot(projectName, authenticated);
+  }
+
+  private String getRepoRoot(String projectName, boolean authenticated) {
+    if (allowsAnonymousAccess(projectName) && !authenticated) {
+      return webUrl + projectName;
+    }
+    return webUrl + "a/" + projectName;
+  }
+
+  private boolean allowsAnonymousAccess(String projectName) {
+    AnonymousUser anonymous = anonProvider.get();
+    Branch.NameKey heads =
+        new Branch.NameKey(new Project.NameKey(projectName), RefNames.REFS_HEADS);
+    
+    return permissions.user(anonymous).ref(heads).testOrFalse(RefPermission.READ);
   }
 
   private boolean projectExists(String projectName) {
