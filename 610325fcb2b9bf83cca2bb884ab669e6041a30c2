@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f3008b31_1129edf9",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-01-21T21:46:18Z",
+      "side": 1,
+      "message": "Would do this insertion above line 64, for cross-plugin consistency.",
+      "revId": "610325fcb2b9bf83cca2bb884ab669e6041a30c2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
