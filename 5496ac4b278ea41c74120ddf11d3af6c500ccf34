@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1a8140e_671e4e21",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-01-23T16:51:19Z",
+      "side": 1,
+      "message": "Should remove. How can this change be Verified+1, with this dot present in the command?",
+      "range": {
+        "startLine": 57,
+        "startChar": 44,
+        "endLine": 57,
+        "endChar": 45
+      },
+      "revId": "5496ac4b278ea41c74120ddf11d3af6c500ccf34",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
