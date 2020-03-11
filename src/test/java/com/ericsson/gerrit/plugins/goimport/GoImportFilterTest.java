@@ -27,11 +27,13 @@ import static org.mockito.Mockito.when;
 import com.google.gerrit.entities.Project;
 import com.google.gerrit.server.AnonymousUser;
 import com.google.gerrit.server.permissions.PermissionBackend;
+import com.google.gerrit.server.permissions.RefPermission;
 import com.google.gerrit.server.project.ProjectCache;
 import com.google.gerrit.server.project.ProjectState;
 import com.google.inject.Provider;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Optional;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -51,6 +53,8 @@ public class GoImportFilterTest {
   private static final String CONTENT_FORMAT = "%1$s/%3$s git %2$s/%3$s";
   private static final String CONTENT =
       String.format(CONTENT_FORMAT, PROD_FQDN, auth(PROD_URL), PROJECT_NAME);
+  private static final String ANON_CONTENT =
+      String.format(CONTENT_FORMAT, PROD_FQDN, PROD_URL, PROJECT_NAME);
   private static final String AUTH_CONTENT =
       String.format(CONTENT_FORMAT, auth(PROD_FQDN), auth(PROD_URL), PROJECT_NAME);
 
@@ -59,10 +63,13 @@ public class GoImportFilterTest {
     return baseUrl + "/a";
   }
 
-  private static byte[] response200(boolean authenticated) {
-    return authenticated
-        ? PAGE_200.replace(CONTENT_PLH, AUTH_CONTENT).getBytes()
-        : PAGE_200.replace(CONTENT_PLH, CONTENT).getBytes();
+  private static byte[] response200(boolean allowAnon, boolean authenticated) {
+    if (authenticated) {
+      return PAGE_200.replace(CONTENT_PLH, AUTH_CONTENT).getBytes();
+    } else if (allowAnon) {
+      return PAGE_200.replace(CONTENT_PLH, ANON_CONTENT).getBytes();
+    }
+    return PAGE_200.replace(CONTENT_PLH, CONTENT).getBytes();
   }
 
   private GoImportFilter unitUnderTest;
@@ -81,23 +88,31 @@ public class GoImportFilterTest {
 
   @Before
   public void setUp() throws Exception {
-    unitUnderTest = new GoImportFilter(mockProjectCache, PROD_URL);
+    unitUnderTest = new GoImportFilter(mockAnonProvider, mockPerms, mockProjectCache, PROD_URL);
     assertThat(unitUnderTest).isNotNull();
     when(mockResponse.getOutputStream()).thenReturn(mockOutputStream);
+
+    when(mockAnonProvider.get()).thenReturn(mockAnon);
+    when(mockPerms.user(mockAnon)).thenReturn(mockPermsWithUser);
+    when(mockPermsWithUser.ref(any())).thenReturn(mockPermsForRef);
   }
 
   @Test
   public void testConstructor() throws Exception {
     assertThat(unitUnderTest.webUrl.endsWith("/")).isTrue();
     unitUnderTest =
-        new GoImportFilter(mockProjectCache, "http://gerrit-review.googlesource.com:8080/");
+        new GoImportFilter(
+            mockAnonProvider,
+            mockPerms,
+            mockProjectCache,
+            "http://gerrit-review.googlesource.com:8080/");
     assertThat(unitUnderTest.webUrl.endsWith("/")).isTrue();
     assertThat(unitUnderTest.projectPrefix).isNotNull();
   }
 
   @Test(expected = URISyntaxException.class)
   public void testConstructorWithURISyntaxException() throws Exception {
-    unitUnderTest = new GoImportFilter(mockProjectCache, "\\\\");
+    unitUnderTest = new GoImportFilter(mockAnonProvider, mockPerms, mockProjectCache, "\\\\");
   }
 
   @Test
@@ -126,33 +141,39 @@ public class GoImportFilterTest {
   public void testDoFilterWithExistingProject() throws Exception {
     when(mockRequest.getServletPath()).thenReturn("/" + PROJECT_NAME);
     when(mockRequest.getParameter("go-get")).thenReturn("1");
-    when(mockProjectCache.get(Project.nameKey(PROJECT_NAME))).thenReturn(mockProjectState);
+    when(mockProjectCache.get(Project.nameKey(PROJECT_NAME)))
+        .thenReturn(Optional.of(mockProjectState));
+    when(mockPermsForRef.testOrFalse(RefPermission.READ)).thenReturn(false);
     unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
-    verify(mockOutputStream, times(1)).write(response200(false));
+    verify(mockOutputStream, times(1)).write(response200(false, false));
     verify(mockChain, times(0)).doFilter(mockRequest, mockResponse);
     verify(mockProjectCache, times(1)).get(any(Project.NameKey.class));
     verify(mockResponse, times(1)).setStatus(200);
+    verify(mockPermsForRef, times(1)).testOrFalse(RefPermission.READ);
   }
 
   @Test
   public void testDoFilterAuthenticatedWithExistingProject() throws Exception {
     when(mockRequest.getServletPath()).thenReturn("/a/" + PROJECT_NAME);
     when(mockRequest.getParameter("go-get")).thenReturn("1");
-    when(mockProjectCache.get(Project.nameKey(PROJECT_NAME))).thenReturn(mockProjectState);
+    when(mockProjectCache.get(Project.nameKey(PROJECT_NAME)))
+        .thenReturn(Optional.of(mockProjectState));
+    when(mockPermsForRef.testOrFalse(RefPermission.READ)).thenReturn(false);
     unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
-    verify(mockOutputStream, times(1)).write(response200(true));
+    verify(mockOutputStream, times(1)).write(response200(false, true));
     verify(mockChain, times(0)).doFilter(mockRequest, mockResponse);
     verify(mockProjectCache, times(1)).get(any(Project.NameKey.class));
     verify(mockResponse, times(1)).setStatus(200);
+    verify(mockPermsForRef, times(1)).testOrFalse(RefPermission.READ);
   }
 
   @Test
   public void testDoFilterWithExistingProjectAndPackage() throws Exception {
     when(mockRequest.getServletPath()).thenReturn("/" + PROJECT_NAME + "/my/package");
     when(mockRequest.getParameter("go-get")).thenReturn("1");
-    when(mockProjectCache.get(Project.nameKey(PROJECT_NAME))).thenReturn(mockProjectState);
+    when(mockPermsForRef.testOrFalse(RefPermission.READ)).thenReturn(false);
     unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
-    verify(mockOutputStream, times(1)).write(response200(false));
+    verify(mockOutputStream, times(1)).write(response200(false, false));
     verify(mockChain, times(0)).doFilter(mockRequest, mockResponse);
     verify(mockProjectCache, times(3)).get(any(Project.NameKey.class));
     verify(mockResponse, times(1)).setStatus(200);
@@ -162,13 +183,15 @@ public class GoImportFilterTest {
   public void testDoFilterWithAnonymousAccessibleProject() throws Exception {
     when(mockRequest.getServletPath()).thenReturn("/projectName");
     when(mockRequest.getParameter("go-get")).thenReturn("1");
-    when(mockProjectCache.get(Project.nameKey("projectName"))).thenReturn(mockProjectState);
-    when(mockProjectCache.get(Project.nameKey("projectName"))).thenReturn(mockProjectState);
+    when(mockProjectCache.get(Project.nameKey("projectName")))
+        .thenReturn(Optional.of(mockProjectState));
+    when(mockPermsForRef.testOrFalse(RefPermission.READ)).thenReturn(true);
     unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
-    verify(mockOutputStream, times(1)).write(response200(false));
+    verify(mockOutputStream, times(1)).write(response200(true, false));
     verify(mockChain, times(0)).doFilter(mockRequest, mockResponse);
     verify(mockProjectCache, times(1)).get(any(Project.NameKey.class));
     verify(mockResponse, times(1)).setStatus(200);
+    verify(mockPermsForRef, times(1)).testOrFalse(RefPermission.READ);
   }
 
   @Test
@@ -189,7 +212,8 @@ public class GoImportFilterTest {
     when(mockRequest.getServletPath()).thenReturn("/" + PROJECT_NAME);
     when(mockRequest.getParameter("go-get")).thenReturn("1");
     doThrow(new IOException(msg)).when(mockOutputStream).write(any(byte[].class));
-    when(mockProjectCache.get(any(Project.NameKey.class))).thenReturn(mockProjectState);
+    when(mockProjectCache.get(any(Project.NameKey.class)))
+        .thenReturn(Optional.of(mockProjectState));
     IOException thrown =
         assertThrows(
             IOException.class, () -> unitUnderTest.doFilter(mockRequest, mockResponse, mockChain));
