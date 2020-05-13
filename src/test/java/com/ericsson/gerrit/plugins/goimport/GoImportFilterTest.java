@@ -64,9 +64,9 @@ public class GoImportFilterTest {
 
   private static byte[] response200(boolean allowAnon, boolean authenticated) {
     if (authenticated) {
-       return PAGE_200.replace(CONTENT_PLH, AUTH_CONTENT).getBytes();
+      return PAGE_200.replace(CONTENT_PLH, AUTH_CONTENT).getBytes();
     } else if (allowAnon) {
-       return PAGE_200.replace(CONTENT_PLH, ANON_CONTENT).getBytes();
+      return PAGE_200.replace(CONTENT_PLH, ANON_CONTENT).getBytes();
     }
     return PAGE_200.replace(CONTENT_PLH, CONTENT).getBytes();
   }
@@ -99,22 +99,19 @@ public class GoImportFilterTest {
   @Test
   public void testConstructor() throws Exception {
     assertThat(unitUnderTest.webUrl.endsWith("/")).isTrue();
-    unitUnderTest = new GoImportFilter(
-        mockAnonProvider,
-        mockPerms,
-        mockProjectCache,
-        "http://gerrit-review.googlesource.com:8080/");
+    unitUnderTest =
+        new GoImportFilter(
+            mockAnonProvider,
+            mockPerms,
+            mockProjectCache,
+            "http://gerrit-review.googlesource.com:8080/");
     assertThat(unitUnderTest.webUrl.endsWith("/")).isTrue();
     assertThat(unitUnderTest.projectPrefix).isNotNull();
   }
 
   @Test(expected = URISyntaxException.class)
   public void testConstructorWithURISyntaxException() throws Exception {
-    unitUnderTest = new GoImportFilter(
-        mockAnonProvider,
-        mockPerms,
-        mockProjectCache,
-        "\\\\");
+    unitUnderTest = new GoImportFilter(mockAnonProvider, mockPerms, mockProjectCache, "\\\\");
   }
 
   @Test
