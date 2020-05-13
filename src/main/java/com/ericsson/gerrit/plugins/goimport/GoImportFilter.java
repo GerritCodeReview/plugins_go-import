@@ -29,8 +29,8 @@ import com.google.gerrit.server.project.ProjectCache;
 import com.google.gerrit.server.project.ProjectState;
 import com.google.gerrit.util.http.CacheHeaders;
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.google.inject.Provider;
+import com.google.inject.Singleton;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
@@ -174,7 +174,7 @@ public class GoImportFilter extends AllRequestFilter {
         + (authenticated ? "a/" : "")
         + projectName
         + " git "
-	+ getRepoRoot(projectName, authenticated);
+        + getRepoRoot(projectName, authenticated);
   }
 
   private String getRepoRoot(String projectName, boolean authenticated) {
