@@ -186,8 +186,7 @@ public class GoImportFilter extends AllRequestFilter {
 
   private boolean allowsAnonymousAccess(String projectName) {
     AnonymousUser anonymous = anonProvider.get();
-    BranchNameKey heads =
-        BranchNameKey.create(Project.nameKey(projectName), RefNames.REFS_HEADS);
+    BranchNameKey heads = BranchNameKey.create(Project.nameKey(projectName), RefNames.REFS_HEADS);
 
     return permissions.user(anonymous).ref(heads).testOrFalse(RefPermission.READ);
   }
