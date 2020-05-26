@@ -91,7 +91,6 @@ public class GoImportFilterTest {
     unitUnderTest = new GoImportFilter(mockAnonProvider, mockPerms, mockProjectCache, PROD_URL);
     assertThat(unitUnderTest).isNotNull();
     when(mockResponse.getOutputStream()).thenReturn(mockOutputStream);
-
     when(mockAnonProvider.get()).thenReturn(mockAnon);
     when(mockPerms.user(mockAnon)).thenReturn(mockPermsWithUser);
     when(mockPermsWithUser.ref(any())).thenReturn(mockPermsForRef);
@@ -171,6 +170,8 @@ public class GoImportFilterTest {
   public void testDoFilterWithExistingProjectAndPackage() throws Exception {
     when(mockRequest.getServletPath()).thenReturn("/" + PROJECT_NAME + "/my/package");
     when(mockRequest.getParameter("go-get")).thenReturn("1");
+    when(mockProjectCache.get(Project.nameKey(PROJECT_NAME)))
+        .thenReturn(Optional.of(mockProjectState));
     when(mockPermsForRef.testOrFalse(RefPermission.READ)).thenReturn(false);
     unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
     verify(mockOutputStream, times(1)).write(response200(false, false));
@@ -198,7 +199,7 @@ public class GoImportFilterTest {
   public void testDoFilterWithNonExistingProject() throws Exception {
     when(mockRequest.getServletPath()).thenReturn("/" + PROJECT_NAME);
     when(mockRequest.getParameter("go-get")).thenReturn("1");
-    when(mockProjectCache.get(any(Project.NameKey.class))).thenReturn(null);
+    when(mockProjectCache.get(any(Project.NameKey.class))).thenReturn(Optional.ofNullable(null));
     unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
     verify(mockOutputStream, times(1)).write(any(byte[].class));
     verify(mockChain, times(0)).doFilter(mockRequest, mockResponse);
