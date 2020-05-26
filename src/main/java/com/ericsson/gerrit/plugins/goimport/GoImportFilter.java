@@ -194,6 +194,6 @@ public class GoImportFilter extends AllRequestFilter {
 
   private boolean projectExists(String projectName) {
     Optional<ProjectState> p = projectCache.get(Project.nameKey(projectName));
-    return p != null;
+    return p.isPresent();
   }
 }
