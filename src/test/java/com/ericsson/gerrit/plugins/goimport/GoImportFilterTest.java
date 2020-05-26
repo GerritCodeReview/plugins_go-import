@@ -184,7 +184,7 @@ public class GoImportFilterTest {
   public void testDoFilterWithAnonymousAccessibleProject() throws Exception {
     when(mockRequest.getServletPath()).thenReturn("/projectName");
     when(mockRequest.getParameter("go-get")).thenReturn("1");
-    when(mockProjectCache.get(Project.nameKey("projectName")))
+    when(mockProjectCache.get(Project.nameKey(PROJECT_NAME)))
         .thenReturn(Optional.of(mockProjectState));
     when(mockPermsForRef.testOrFalse(RefPermission.READ)).thenReturn(true);
     unitUnderTest.doFilter(mockRequest, mockResponse, mockChain);
