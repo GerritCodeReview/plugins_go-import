@@ -22,6 +22,30 @@
       "revId": "560ff6b038c340c45422c7d4a7bc951e25aff7f7",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28530d3f_7976b4b9",
+        "filename": "src/test/java/com/ericsson/gerrit/plugins/goimport/GoImportFilterTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1094140
+      },
+      "writtenOn": "2020-05-27T13:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b05b7567_87dd5173",
+      "range": {
+        "startLine": 202,
+        "startChar": 70,
+        "endLine": 202,
+        "endChar": 95
+      },
+      "revId": "560ff6b038c340c45422c7d4a7bc951e25aff7f7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
