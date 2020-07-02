@@ -1,11 +1,13 @@
 {
   "checks": {
     "zuul-check:plugins_go-import": {
-      "state": "RUNNING",
-      "message": "Jobs have started running",
+      "state": "SUCCESSFUL",
+      "message": "Change passed all voting jobs",
+      "url": "https://ci.gerritcodereview.com/t/gerrit/buildset/85949751b1804b3ca5d166ff728f7201",
       "started": "2020-07-02T13:18:02Z",
+      "finished": "2020-07-02T14:14:49Z",
       "created": "2020-07-02T13:18:02Z",
-      "updated": "2020-07-02T13:18:10Z"
+      "updated": "2020-07-02T14:14:50Z"
     }
   }
 }
