@@ -1,13 +1,9 @@
 {
   "checks": {
     "zuul-check:plugins_go-import": {
-      "state": "FAILED",
-      "message": "Change failed",
-      "url": "https://ci.gerritcodereview.com/t/gerrit/buildset/6f865baa5b194a3abcd27d2644582a8f",
-      "started": "2020-09-03T19:15:45Z",
-      "finished": "2020-09-03T19:21:16Z",
+      "state": "NOT_STARTED",
       "created": "2020-09-03T19:15:45Z",
-      "updated": "2020-09-03T19:21:16Z"
+      "updated": "2020-09-04T12:44:24Z"
     }
   }
 }
