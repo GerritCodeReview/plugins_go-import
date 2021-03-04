@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d2be5c7_28ba526b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2021-03-04T07:49:26Z",
+      "side": 1,
+      "message": "I think a stable-3.2 branch should be create on the parent of this change, because the API used is now at 3.3",
+      "revId": "d78fde26c47c233174ef585000c7b9e3a29ce166",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78e0e2b6_8badbbd3",
