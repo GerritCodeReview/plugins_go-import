@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45618adf_b1efc85a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2021-05-20T19:19:08Z",
+      "side": 1,
+      "message": "@Pat, let us know here if you\u0027d like a new stable-3.4 plugin branch now or after this change is merged. The idea would be to branch off from this stable-3.3 branch to create it.",
+      "revId": "c60764c1403fe376fb0e4cea51a9666a4f66a0e5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
