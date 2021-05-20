@@ -3,7 +3,7 @@ workspace(name = "go_import")
 load("//:bazlets.bzl", "load_bazlets")
 
 load_bazlets(
-    commit = "0f81174e3d1b892a1342ebc75bb4bbb158ae0efe",
+    commit = "10e78cc706760ff24cbc67ba527f9a8e4134d66f"
     #local_path = "/home/<user>/projects/bazlets",
 )
 
@@ -12,4 +12,4 @@ load(
     "gerrit_api",
 )
 
-gerrit_api(version = "3.3.0-SNAPSHOT")
+gerrit_api()
