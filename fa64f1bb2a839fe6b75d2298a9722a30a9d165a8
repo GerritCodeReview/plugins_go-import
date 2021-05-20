@@ -16,6 +16,24 @@
       "message": "Have you been able to pass plugin build and tests locally using bazel standalone mode? If so, can you score a Verified vote accordingly? -Thanks.",
       "revId": "fa64f1bb2a839fe6b75d2298a9722a30a9d165a8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4dc712e_ca36dc6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1064086
+      },
+      "writtenOn": "2021-05-20T17:42:51Z",
+      "side": 1,
+      "message": "Running\n\n  bazel test //...\n\npassed.",
+      "parentUuid": "f07b81fd_460c6e33",
+      "revId": "fa64f1bb2a839fe6b75d2298a9722a30a9d165a8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
