@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98aae090_8b939528",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2021-05-20T19:22:59Z",
+      "side": 1,
+      "message": "Once/if the upcoming stable-3.4 is done initializing (likely by @Patrick), we may merge it up onto this master branch again, as it would be off latest stable-3.3.",
+      "revId": "34d9b8021a2228f335ebe21e3cee9c6b83da1cc3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
