@@ -52,6 +52,24 @@
       "parentUuid": "131ef90c_1cb79d82",
       "revId": "c60764c1403fe376fb0e4cea51a9666a4f66a0e5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3902e45b_34267185",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2021-05-21T13:00:32Z",
+      "side": 1,
+      "message": "\u003e I\u0027m about to base stable-3.4 (which I will create in a few seconds) on this very SHA.\n\n-Done; branch created. @Pat, you may start working on it now or so.\n\nI could have spawned it from master but basing it from this 3.3 tip looked cleaner (and clearer) to me. Once 3.4 is ready, we can merge it up onto master and no need to do the downstream merge first (from 3.3) to it, even if no-op.",
+      "parentUuid": "f5dede02_9de844e1",
+      "revId": "c60764c1403fe376fb0e4cea51a9666a4f66a0e5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
